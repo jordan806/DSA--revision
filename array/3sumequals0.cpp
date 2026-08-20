@@ -27,3 +27,45 @@ public:
         return ans;
     }
 };
+
+
+//optimised  o(n2)
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+
+        sort(nums.begin(),nums.end());
+        set<vector<int>> st;
+        
+        
+        for(int i=0;i<nums.size();i++){
+
+            int j =i+1;
+            int k =nums.size()-1;
+
+            while(j<k){
+
+                int sums=nums[i]+nums[j]+nums[k];
+
+                if(sums ==0){
+                    vector<int> temp ={
+                        nums[i],nums[j],nums[k]
+                    };
+                    st.insert(temp);
+                    j++;
+                    k--;
+                }
+
+                else if(sums<0){
+                    j++;
+                }
+
+                else{
+                    k--;
+                }     
+            }
+        }
+        vector<vector<int>> ans(st.begin(),st.end());
+        return ans;
+    }
+};
