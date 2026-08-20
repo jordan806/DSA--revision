@@ -1,4 +1,4 @@
-//brute force (n3) 
+//brute force tc:o(n3)  sc:o(n)
 
 class Solution {
 public:
@@ -29,7 +29,7 @@ public:
 };
 
 
-//optimised  o(n2)
+//optimised  tc:o(n2)  sc:o(n)
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
@@ -64,8 +64,62 @@ public:
                     k--;
                 }     
             }
+
+
+
+            //optimsed tc:o(n2)  sc:o(1)
+
+
+
+class Solution {
+  public:
+    vector<vector<int>> triplets(vector<int> &arr) {
+        // code here
+        vector<vector<int>> ans;
+        
+        sort(arr.begin(),arr.end());
+        
+        
+        
+        for(int i=0;i<arr.size();i++){
+            if(i>0 && arr[i]==arr[i-1]){
+                continue;
+            }
+            
+            int j=i+1;
+            int k=arr.size()-1;
+            
+            while(j<k){
+                int sums=arr[i]+arr[j]+arr[k];
+                
+                if(sums==0){
+                    ans.push_back({arr[i],arr[j],arr[k]});
+                
+                j++;
+                k--;
+                
+            
+               while(j<k && arr[j]==arr[j-1]){
+                j++;
+                }
+               while(j<k && arr[k]==arr[k+1]){
+                k--;
+               }
+               
+            }  
+               else if(sums<0){
+                   j++;
+               }
+               
+               else{
+                   k--;
+               }
+               
+            }
+            
+            
         }
-        vector<vector<int>> ans(st.begin(),st.end());
         return ans;
     }
 };
+               
